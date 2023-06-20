@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Εξυπηρετητής: 127.0.0.1
--- Χρόνος δημιουργίας: 11 Ιουν 2023 στις 14:18:52
+-- Χρόνος δημιουργίας: 19 Ιουν 2023 στις 21:34:26
 -- Έκδοση διακομιστή: 10.4.28-MariaDB
 -- Έκδοση PHP: 8.2.4
 
@@ -38,6 +38,14 @@ CREATE TABLE `bus` (
   `model` varchar(255) DEFAULT NULL,
   `xoritikotita` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `bus`
+--
+
+INSERT INTO `bus` (`id`, `arithmos_kykloforias`, `etos_kykloforias`, `kyvika`, `lat`, `lng`, `marka`, `model`, `xoritikotita`) VALUES
+(1, '12334', '2000', 2000, 38.2266, 21.7465, 'Mercendes', 'A10', 50),
+(2, '14444', '2000', 2000, 38.2311, 21.7394, 'Mercendes', 'A12', 50);
 
 -- --------------------------------------------------------
 
@@ -84,7 +92,7 @@ CREATE TABLE `bus_seq` (
 --
 
 INSERT INTO `bus_seq` (`next_val`) VALUES
-(1);
+(3);
 
 -- --------------------------------------------------------
 
@@ -223,6 +231,16 @@ CREATE TABLE `station` (
   `title` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Άδειασμα δεδομένων του πίνακα `station`
+--
+
+INSERT INTO `station` (`id`, `lat`, `lng`, `title`) VALUES
+(1, 38.2317, 21.7384, 'ergatikes katikoies'),
+(2, 38.223, 21.7532, 'Panpeloponisiako'),
+(3, 38.2182, 21.7518, 'koukouli'),
+(4, 38.22, 21.7414, 'glafkos');
+
 -- --------------------------------------------------------
 
 --
@@ -249,12 +267,19 @@ INSERT INTO `station_seq` (`next_val`) VALUES
 CREATE TABLE `ticket` (
   `id` int(11) NOT NULL,
   `ticket_num` int(11) DEFAULT NULL,
-  `ekdosi` date DEFAULT NULL,
+  `ekdosi` date DEFAULT current_timestamp(),
   `type` varchar(255) DEFAULT NULL,
   `used_date` date DEFAULT NULL,
   `lid` int(11) DEFAULT NULL,
   `uid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `ticket`
+--
+
+INSERT INTO `ticket` (`id`, `ticket_num`, `ekdosi`, `type`, `used_date`, `lid`, `uid`) VALUES
+(1, 77941, NULL, 'kanoniko', NULL, NULL, 102);
 
 -- --------------------------------------------------------
 
@@ -271,7 +296,7 @@ CREATE TABLE `ticket_seq` (
 --
 
 INSERT INTO `ticket_seq` (`next_val`) VALUES
-(1);
+(51);
 
 -- --------------------------------------------------------
 
@@ -286,6 +311,16 @@ CREATE TABLE `user` (
   `fullname` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Άδειασμα δεδομένων του πίνακα `user`
+--
+
+INSERT INTO `user` (`id`, `afm`, `email`, `fullname`, `password`) VALUES
+(1, NULL, 'admin@admin.gr', 'test', '1234234'),
+(52, '1234', 'p22@pp.gr', 'pppp3', '1234'),
+(53, '1234', 'p2@pp.gr', 'p1', '1234'),
+(102, '1234', 'a@user.gr', 'aaaa', '1234');
 
 -- --------------------------------------------------------
 
@@ -302,7 +337,7 @@ CREATE TABLE `user_seq` (
 --
 
 INSERT INTO `user_seq` (`next_val`) VALUES
-(1);
+(201);
 
 --
 -- Ευρετήρια για άχρηστους πίνακες
